@@ -54,13 +54,13 @@ const Home: NextPage = () => {
         <p className={styles.explain}>
           <b>Owned NFTs</b>
         </p> 
-        <div>
+        <div className={styles.tokenGrid}>
           {isLoading ? (<p>Loading your poops....</p>) : 
           nfts?.map((nft) => {
             return(
             <div key={nft.metadata.id.toString()}>
               <p>{nft.metadata.name}</p>
-              <ThirdwebNftMedia metadata={nft.metadata} width="200px" height="200px"/>
+              <ThirdwebNftMedia metadata={nft.metadata} width="200px" height="200px" className={styles.tokenItem}/>
             </div>)
           })}    
         </div>   
