@@ -25,6 +25,8 @@ const Home: NextPage = () => {
   //const poops = ['Richie','Colin','Brian','Weebo','Jethie'];
   //const [referral, setReferral] = useState(poops[Math.floor(Math.random() * poops.length)]);
   const [referral, setReferral] = useState('Team');
+  const [maxSupply, setMaxSupply] = useState(0);
+
   console.log(nftDropContractAddress);
 
   const { contract } = useContract(nftDropContractAddress);
