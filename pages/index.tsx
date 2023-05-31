@@ -9,7 +9,7 @@ import {
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { nftDropContractAddress } from "../consts/contractAddresses";
-import { apiAddress, apiAddresses } from "../consts/apiAddresses";
+import { apiAddress } from "../consts/apiAddresses";
 
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from 'react';
