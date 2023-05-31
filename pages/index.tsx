@@ -103,7 +103,7 @@ const Home: NextPage = () => {
           Mint An NFT
         </Web3Button>
         <br />
-        <p>Your buddy's Poop name</p>
+        <p>Your buddys Poop name</p>
         <input
           className={styles.textBox}
           type="text"
