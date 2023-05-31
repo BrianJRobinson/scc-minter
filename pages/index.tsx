@@ -14,6 +14,7 @@ import { apiAddress } from "../consts/apiAddresses";
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from 'react';
 import { Poppins } from 'next/font/google';
+import { toast } from "react-toastify";
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -91,13 +92,11 @@ const Home: NextPage = () => {
           contractAddress={nftDropContractAddress}
           action={(contract) => contract.erc721.claim(1)}        
           onSuccess={(result) => {
-            console.log(`Token Id is ${result[0].id}`); 
-            console.log(`Referral is ${referral}`);
+            toast('Mint Successful', { hideProgressBar: true, autoClose: 3000, type: 'success' ,position:'top-center' });
             updateReferral(referral, result[0].id);       
-            alert("NFT Claimed!");
           }}
           onError={(error) => {
-            alert(error);
+            toast(`Error minting - ${error}`, { hideProgressBar: true, autoClose: 3000, type: 'error' ,position:'top-center' })
           }}
         >
           Mint An NFT

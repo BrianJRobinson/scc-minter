@@ -2,6 +2,8 @@ import { ThirdwebProvider } from "@thirdweb-dev/react";
 import type { AppProps } from "next/app";
 import "../styles/globals.css";
 import { Archivo, Archivo_Black, Poppins } from 'next/font/google';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const archivo = Archivo({
   subsets: ['latin'],
@@ -14,13 +16,14 @@ const archivo_black = Archivo_Black({
 })
 
 // This is the chain your dApp will work on.
-const activeChain = "polygon";
+const activeChain = "mumbai";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <main className={archivo_black.className}>
       <ThirdwebProvider activeChain={activeChain}>
         <Component {...pageProps} />
+        <ToastContainer />
       </ThirdwebProvider>
     </main>
   );
