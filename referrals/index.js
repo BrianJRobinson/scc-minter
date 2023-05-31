@@ -66,7 +66,7 @@ const Referrals = () => {
     },
     {
       name: "Dollar Value",
-      selector: (row) => row.dollarValue,
+      selector: (row) => row.dollarValue.toFixed(2),
     },
   ];
 
