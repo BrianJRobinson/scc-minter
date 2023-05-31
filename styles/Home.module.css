@@ -171,6 +171,11 @@
   height: 40px;
 }
 
+.referralTable {
+  background-color: transparent;
+  width:50%;
+}
+
 .sigmaButton {
   background-color: #592464 !important;
   color: #fc3 !important;

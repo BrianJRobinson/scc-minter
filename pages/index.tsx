@@ -15,6 +15,7 @@ import styles from "../styles/Home.module.css";
 import { useState, useEffect } from 'react';
 import { Poppins } from 'next/font/google';
 import { toast } from "react-toastify";
+import Referrals  from "../referrals"
 
 const poppins = Poppins({
   variable: '--font-poppins',
@@ -40,7 +41,7 @@ const Home: NextPage = () => {
 
   const updateReferral = async (team: string, id:string) => {
     const response = await fetch(`${apiAddress}team=${team}&tokenid=${id}`, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -109,6 +110,7 @@ const Home: NextPage = () => {
           value={referral}
           onChange={e => setReferral(e.target.value)}
         />
+        <Referrals />
       </div>
     </div>
   );

@@ -22,10 +22,11 @@ const activeChain = "mumbai";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <main className={archivo_black.className}>
-      <ThirdwebProvider activeChain={activeChain}>
-        <Component {...pageProps} />
-        <ToastContainer />
-      </ThirdwebProvider>
+
+        <ThirdwebProvider activeChain={activeChain}>
+          <Component {...pageProps} />
+            <ToastContainer />
+        </ThirdwebProvider>
     </main>
   );
 }
