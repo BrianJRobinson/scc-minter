@@ -86,7 +86,6 @@ const Home: NextPage = () => {
         <div className={styles.tokenGrid}>
           {isLoading ? (<p>Loading your poops....</p>) : 
           nfts?.map((nft) => {
-            const x = CalcRef(nft.metadata.name as string);
             return(
             <div key={nft.metadata.id.toString()} onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft.metadata.name as string).replace('#','')}`)}>
               <p>{nft.metadata.name}</p>
