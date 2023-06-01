@@ -171,6 +171,20 @@
   height: 40px;
 }
 
+.referralBox {
+  background-color: #592464;
+  color: #fc3;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0px 4px 20px 0px transparent;
+  transition: 0.3s background-color ease-in-out, 0.3s box-shadow ease-in-out, 0.1s padding ease-in-out;
+  padding-left: 10px;
+  border: none;
+  height: 40px;
+  width: 50% ;
+  cursor: pointer;
+}
+
 .referralTable {
   background-color: transparent;
   width:85%;
@@ -223,4 +237,36 @@
   width: 100%;
   max-height: 200px;
   border-radius: 15px;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted rgba(63, 2, 63, 0.931); /* If you want dots under the hoverable text */
+  width:70%;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: rgba(63, 2, 63, 0.931);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  font-size: smaller;
+  width: 160px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -80px; /* Use half of the width (120/2 = 60), to center the tooltip */  
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

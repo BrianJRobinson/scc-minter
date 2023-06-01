@@ -23,6 +23,7 @@ const Home: NextPage = () => {
 
   const [referral, setReferral] = useState('Team');
   const [tokenId, setTokenId] = useState('0');
+  const [refLink, setRefLink] = useState('');
 
   console.log(nftDropContractAddress);
 
@@ -72,14 +73,24 @@ const Home: NextPage = () => {
         <hr className={`${styles.smallDivider} ${styles.detailPageHr}`} />
         <p className={styles.explain}>
           <b>Owned NFTs</b>
-        </p> 
+        </p>
+        <p>Click on one of your Poops to create your own referral link (click below to copy to clipboard)</p>
+        <div className={styles.tooltip}>
+          <span className={styles.tooltiptext}>Copy to clipboard</span>
+          <input type='text' value={refLink} className={styles.referralBox} readOnly 
+            onClick={() => {navigator.clipboard.writeText(refLink); 
+                toast('Copied to clipboard', { hideProgressBar: true, autoClose: 1000, type: 'success' ,position:'top-center' });
+                }}>                
+          </input>
+        </div>
         <div className={styles.tokenGrid}>
           {isLoading ? (<p>Loading your poops....</p>) : 
           nfts?.map((nft) => {
+            const x = CalcRef(nft.metadata.name as string);
             return(
-            <div key={nft.metadata.id.toString()}>
+            <div key={nft.metadata.id.toString()} onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft.metadata.name as string).replace('#','')}`)}>
               <p>{nft.metadata.name}</p>
-              <ThirdwebNftMedia metadata={nft.metadata} width="200px" height="200px" className={styles.tokenItem}/>
+                <ThirdwebNftMedia metadata={nft.metadata} width="200px" height="200px" className={styles.tokenItem} />
             </div>)
           })}    
         </div>   
