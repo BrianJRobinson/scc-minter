@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataTable, { createTheme } from "react-data-table-component";
 import styles from "../styles/Home.module.css";
+import { toast } from "react-toastify";
 
 createTheme(
   "solarized",
@@ -18,7 +19,7 @@ createTheme(
       text: "#FFFFFF",
     },
     divider: {
-      default: "#073642",
+      default: "#fc3",
     },
     action: {
       button: "rgba(0,0,0,.54)",
@@ -33,23 +34,32 @@ createTheme(
   "dark"
 );
 
-const Referrals = () => {
+const Referrals = (props) => {
   const [referrals, setReferrals] = useState([]);
+  const [tokenId, setTokenId] = useState(props.newToken);
+  console.log(`Inside Datatable ${props.newToken}`);
+  if (tokenId !== props.newToken) {
+    setTokenId(props.newToken);
+  }
   const getReferrals = async () => {
+    console.log(`Getting referrals`);
     try {
-      console.log("Getting referral data");
       const response = await axios.get("https://degen-defi.com/api/referral");
-      console.log("After referral data");
-      console.log(response.data);
+
       setReferrals(response.data);
-      console.log(referrals);
     } catch (error) {
       console.log(error);
+      toast(`Error Getting Data`, {
+        hideProgressBar: true,
+        autoClose: 3000,
+        type: "error",
+        position: "top-center",
+      });
     }
   };
   useEffect(() => {
     getReferrals();
-  }, []);
+  }, [tokenId]);
 
   const columns = [
     {
@@ -59,14 +69,17 @@ const Referrals = () => {
     {
       name: "Count",
       selector: (row) => row.referralCount,
+      maxWidth: "5%",
     },
     {
-      name: "Eth Value",
+      name: "Eth",
       selector: (row) => row.wethValue,
+      maxWidth: "5%",
     },
     {
-      name: "Dollar Value",
+      name: "$US",
       selector: (row) => row.dollarValue.toFixed(2),
+      maxWidth: "5%",
     },
   ];
 
@@ -78,14 +91,14 @@ const Referrals = () => {
     },
     headCells: {
       style: {
-        paddingLeft: "8px", // override the cell padding for head cells
-        paddingRight: "8px",
+        paddingLeft: "5px", // override the cell padding for head cells
+        paddingRight: "5px",
       },
     },
     cells: {
       style: {
-        paddingLeft: "8px", // override the cell padding for data cells
-        paddingRight: "8px",
+        paddingLeft: "5px", // override the cell padding for data cells
+        paddingRight: "5px",
       },
     },
   };

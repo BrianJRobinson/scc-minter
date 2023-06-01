@@ -173,7 +173,8 @@
 
 .referralTable {
   background-color: transparent;
-  width:50%;
+  width:85%;
+  max-width: 1000px;
 }
 
 .sigmaButton {
@@ -195,6 +196,9 @@
 @media only screen and (max-width: 630px) {
   .center {
     display: none;
+  }
+  .referralTable {
+    width: 100%;
   }
 }
 

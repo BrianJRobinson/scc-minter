@@ -17,17 +17,12 @@ import { Poppins } from 'next/font/google';
 import { toast } from "react-toastify";
 import Referrals  from "../referrals"
 
-const poppins = Poppins({
-  variable: '--font-poppins',
-  weight: "100",
-  subsets: ['latin']
-});
-
 const Home: NextPage = () => {
   const router = useRouter()
   const queryParameters = router.query
 
   const [referral, setReferral] = useState('Team');
+  const [tokenId, setTokenId] = useState('0');
 
   console.log(nftDropContractAddress);
 
@@ -48,6 +43,7 @@ const Home: NextPage = () => {
     });
  
     await response.text();
+    setTokenId(id.toString());
   };
 
   useEffect(() => {
@@ -57,7 +53,7 @@ const Home: NextPage = () => {
     }
   }, [router.isReady])  
 
-  useEffect(() => {
+  useEffect(() => { 
     setReferral(window.localStorage.getItem('referral') as string);
   }, []);
 
@@ -94,13 +90,13 @@ const Home: NextPage = () => {
           action={(contract) => contract.erc721.claim(1)}        
           onSuccess={(result) => {
             toast('Mint Successful', { hideProgressBar: true, autoClose: 3000, type: 'success' ,position:'top-center' });
-            updateReferral(referral, result[0].id);       
+            updateReferral(referral, result[0].id);                   
           }}
           onError={(error) => {
             toast(`Error minting - ${error}`, { hideProgressBar: true, autoClose: 3000, type: 'error' ,position:'top-center' })
           }}
         >
-          Mint An NFT
+          Mint A Poop
         </Web3Button>
         <br />
         <p>Your buddys Poop name</p>
@@ -109,8 +105,9 @@ const Home: NextPage = () => {
           type="text"
           value={referral}
           onChange={e => setReferral(e.target.value)}
+          onBlur={e => {if (e.target.value === '') e.target.value = 'Team'}}
         />
-        <Referrals />
+        <Referrals newToken={tokenId} />
       </div>
     </div>
   );
