@@ -28,7 +28,7 @@ createTheme(
     },
     striped: {
       default: "#9c59b37a",
-      text: "rgba(0, 0, 0, 0.87)",
+      text: "#F9EA76",
     },
   },
   "dark"
