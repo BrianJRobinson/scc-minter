@@ -116,6 +116,7 @@ const Home: NextPage = () => {
           value={referral}
           onChange={e => setReferral(e.target.value)}
           onBlur={e => {if (e.target.value === '') e.target.value = 'Team'}}
+          readOnly
         />
         <Referrals newToken={tokenId} />
       </div>
