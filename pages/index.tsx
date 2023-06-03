@@ -6,6 +6,7 @@ import {
   useOwnedNFTs, 
   ConnectWallet
 } from "@thirdweb-dev/react";
+
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { nftDropContractAddress } from "../consts/contractAddresses";
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
   const queryParameters = router.query
 
   const [referral, setReferral] = useState('Team');
+  const [refWallet, setRefWallet] = useState('');
   const [tokenId, setTokenId] = useState('0');
   const [refLink, setRefLink] = useState('');
 
@@ -36,7 +38,7 @@ const Home: NextPage = () => {
   console.log(nfts);
 
   const updateReferral = async (team: string, id:string) => {
-    const response = await fetch(`${apiAddress}team=${team}&tokenid=${id}`, {
+    const response = await fetch(`${apiAddress}team=${team}&tokenid=${id}&refwallet=${refWallet}&purchaser=${address}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,6 +53,8 @@ const Home: NextPage = () => {
     if (router.isReady) {
       if(queryParameters.ref as string != "")
         setReferral(queryParameters.ref as string);
+      if(queryParameters.wallet as string != "")
+        setRefWallet(queryParameters.wallet as string);
     }
   }, [router.isReady])  
 
@@ -66,14 +70,7 @@ const Home: NextPage = () => {
     <div>
       <div className={styles.container}>
         <h1 className={styles.h1}>Mint an SCC NFT!</h1>
-
-        <p className={styles.explain}>
-          <b>MINT YOUR POOPY MEMBERSHIP</b>
-        </p>
-        <p className={styles.explain}>
-          <b>Owned NFTs</b>
-        </p>
-        <p>Click on one of your Poops to create your own referral link (click below to copy to clipboard)</p>
+        <p>Click on one of your Poops to create your own referral link</p>
         <div className={styles.tooltip}>
           <span className={styles.tooltiptext}>Copy to clipboard</span>
           <input type='text' value={refLink} className={styles.referralBox} readOnly 
@@ -82,11 +79,14 @@ const Home: NextPage = () => {
                 }}>                
           </input>
         </div>
+        <p className={styles.explain}>
+          <b>Owned NFTs</b>
+        </p>        
         <div className={styles.tokenGrid}>
           {isLoading ? (<p>Loading your poops....</p>) : 
           nfts?.map((nft) => {
             return(
-            <div key={nft.metadata.id.toString()} onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft.metadata.name as string).replace('#','').replace(' ','')}`)}>
+            <div key={nft.metadata.id.toString()} onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft.metadata.name as string).replace('#','').replace(/ /g,'-')}&wallet=${address}`)}>
               <p>{nft.metadata.name}</p>
                 <ThirdwebNftMedia metadata={nft.metadata} width="200px" height="200px" className={styles.tokenItem} />
             </div>)
@@ -105,7 +105,7 @@ const Home: NextPage = () => {
             toast(`Error minting - ${error}`, { hideProgressBar: true, autoClose: 3000, type: 'error' ,position:'top-center' })
           }}
         >
-          Mint A Poop
+          Mint the NFT
         </Web3Button>
         <br />
         <p>Your buddys Poop name</p>
