@@ -70,7 +70,6 @@ const Home: NextPage = () => {
         <p className={styles.explain}>
           <b>MINT YOUR POOPY MEMBERSHIP</b>
         </p>
-        <hr className={`${styles.smallDivider} ${styles.detailPageHr}`} />
         <p className={styles.explain}>
           <b>Owned NFTs</b>
         </p>
@@ -87,7 +86,7 @@ const Home: NextPage = () => {
           {isLoading ? (<p>Loading your poops....</p>) : 
           nfts?.map((nft) => {
             return(
-            <div key={nft.metadata.id.toString()} onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft.metadata.name as string).replace('#','')}`)}>
+            <div key={nft.metadata.id.toString()} onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft.metadata.name as string).replace('#','').replace(' ','')}`)}>
               <p>{nft.metadata.name}</p>
                 <ThirdwebNftMedia metadata={nft.metadata} width="200px" height="200px" className={styles.tokenItem} />
             </div>)
