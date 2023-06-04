@@ -26,9 +26,7 @@
 }
 
 .background {
-  opacity: 0.3;
-  /*background-image: url(https://i.pinimg.com/originals/06/87/cc/0687cca….jpg);*/
-  background-image: url(https://i.pinimg.com/originals/d2/b8/59/d2b859bc9841510cd0940bf1ba2a54bf.jpg);
+  opacity: 0.2;
   position: absolute;
   width: 100%;
   height: 100%;  

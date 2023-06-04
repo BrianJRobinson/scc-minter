@@ -69,7 +69,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.main}>
       <div>
-        <img src={`https://i.pinimg.com/originals/d2/b8/59/d2b859bc9841510cd0940bf1ba2a54bf.jpg`}
+        <img src={`https://drip.pineydev.com/token_images/poops-lounge-bg.jpg`}
           className={styles.background}
         />
       </div>
@@ -115,7 +115,7 @@ const Home: NextPage = () => {
           Mint the NFT
         </Web3Button>
         <br />
-        <p>Your buddys Poop name</p>
+        <h3>Your buddys Poop name</h3>
         <input
           className={styles.textBox}
           type="text"
