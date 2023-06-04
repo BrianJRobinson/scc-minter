@@ -113,7 +113,7 @@ const Home: NextPage = () => {
             toast(`Error minting - ${error}`, { hideProgressBar: true, autoClose: 3000, type: 'error' ,position:'top-center' })
           }}
         >
-          Mint the NFT
+          Mint an SCC NFT
         </Web3Button>
         <br />
         <h3>Your buddys Poop name</h3>
