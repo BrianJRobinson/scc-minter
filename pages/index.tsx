@@ -14,7 +14,6 @@ import { apiAddress } from "../consts/apiAddresses";
 
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from 'react';
-import { Poppins } from 'next/font/google';
 import { toast } from "react-toastify";
 import Referrals  from "../referrals"
 
@@ -38,6 +37,8 @@ const Home: NextPage = () => {
   console.log(nfts);
 
   const updateReferral = async (team: string, id:string) => {
+    if(!team)
+      team = 'Team';
     const response = await fetch(`${apiAddress}team=${team}&tokenid=${id}&refwallet=${refWallet}&purchaser=${address}`, {
       method: "POST",
       headers: {
@@ -101,12 +102,12 @@ const Home: NextPage = () => {
         </div>   
         <Web3Button
           theme="dark"
-          className={styles.sigmaButton}
+          className={styles.mintButton}
           contractAddress={nftDropContractAddress}
           action={(contract) => contract.erc721.claim(1)}        
           onSuccess={(result) => {
             toast('Mint Successful', { hideProgressBar: true, autoClose: 3000, type: 'success' ,position:'top-center' });
-            updateReferral(referral, result[0].id);                   
+            updateReferral(result[0].id);                   
           }}
           onError={(error) => {
             toast(`Error minting - ${error}`, { hideProgressBar: true, autoClose: 3000, type: 'error' ,position:'top-center' })
