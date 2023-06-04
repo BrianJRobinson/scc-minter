@@ -34,19 +34,19 @@ createTheme(
   "dark"
 );
 
-const Referrals = (props) => {
-  const [referrals, setReferrals] = useState([]);
+const Leaderboard = (props) => {
+  const [data, setData] = useState([]);
   const [tokenId, setTokenId] = useState(props.newToken);
-  console.log(`Inside Datatable ${props.newToken}`);
+  console.log(`Inside Datatable token id is ${props.newToken}`);
   if (tokenId !== props.newToken) {
     setTokenId(props.newToken);
   }
-  const getReferrals = async () => {
-    console.log(`Getting referrals`);
+  const getData = async () => {
+    console.log(`Getting Data`);
     try {
       const response = await axios.get("https://degen-defi.com/api/referral");
 
-      setReferrals(response.data);
+      setData(response.data);
     } catch (error) {
       console.log(error);
       toast(`Error Getting Data`, {
@@ -58,7 +58,7 @@ const Referrals = (props) => {
     }
   };
   useEffect(() => {
-    getReferrals();
+    getData();
   }, [tokenId]);
 
   const columns = [
@@ -108,9 +108,9 @@ const Referrals = (props) => {
     <div className={styles.referralTable}>
       <br />
       <h2>Shillers Leaderboard</h2>
-      <DataTable columns={columns} data={referrals} striped theme="solarized" />
+      <DataTable columns={columns} data={data} striped theme="solarized" />
     </div>
   );
 };
 
-export default Referrals;
+export default Leaderboard;

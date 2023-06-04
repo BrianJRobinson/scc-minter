@@ -15,7 +15,7 @@ import { apiAddress } from "../consts/apiAddresses";
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from 'react';
 import { toast } from "react-toastify";
-import Referrals  from "../referrals"
+import Leaderboard from "../leaderboard";
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -107,7 +107,7 @@ const Home: NextPage = () => {
           action={(contract) => contract.erc721.claim(1)}        
           onSuccess={(result) => {
             toast('Mint Successful', { hideProgressBar: true, autoClose: 3000, type: 'success' ,position:'top-center' });
-            updateReferral(result[0].id);                   
+            updateReferral(referral, result[0].id);                   
           }}
           onError={(error) => {
             toast(`Error minting - ${error}`, { hideProgressBar: true, autoClose: 3000, type: 'error' ,position:'top-center' })
@@ -125,7 +125,7 @@ const Home: NextPage = () => {
           onBlur={e => {if (e.target.value === '') e.target.value = 'Team'}}
           readOnly
         />
-        <Referrals newToken={tokenId} />
+        <Leaderboard newToken={tokenId} />
       </div>
     </div>
   );
