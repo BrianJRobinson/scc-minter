@@ -1,16 +1,36 @@
+.main {
+  height:100%;
+}
 .container {
-  margin-top: 46px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   position: absolute;
-  padding: 0 24px;
+  padding: 50px 24px;
+  /*height: 100%;*/
+}
+
+.header {
+  height:30px;
+  background-color: #fc3;
+}
+
+.footer {
+  height:30px;
 }
 
 .h1 {
   margin-bottom: 0px;
+}
+
+.background {
+  opacity: 0.3;
+  background-image: url(https://i.pinimg.com/originals/06/87/cc/0687cca….jpg);
+  position: absolute;
+  width: 100%;
+  height: 100%;  
 }
 
 .explain {
@@ -190,7 +210,7 @@
 .referralTable {
   background-color: transparent;
   width:85%;
-  max-width: 1000px;
+  max-width: 750px;
 }
 
 .sigmaButton {
@@ -245,7 +265,6 @@
 .tooltip {
   position: relative;
   display: inline-block;
-  border-bottom: 1px dotted rgba(63, 2, 63, 0.931); /* If you want dots under the hoverable text */
   width:70%;
 }
 

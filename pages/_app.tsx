@@ -1,11 +1,11 @@
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 import type { AppProps } from "next/app";
 import "../styles/globals.css";
-import { Archivo, Archivo_Black, Poppins } from 'next/font/google';
+import { Limelight, Archivo_Black, Poppins } from 'next/font/google';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-const archivo = Archivo({
+const limelight = Limelight({
   subsets: ['latin'],
   weight: '400',
 })
@@ -21,7 +21,7 @@ const activeChain = "mumbai";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <main className={archivo_black.className}>
+    <main className={limelight.className}>
 
         <ThirdwebProvider activeChain={activeChain}>
           <Component {...pageProps} />

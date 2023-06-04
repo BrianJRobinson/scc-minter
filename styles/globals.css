@@ -7,14 +7,6 @@
   box-sizing: border-box;
 }
 
-/* Set core body defaults */
-body {
-  min-height: 100vh;
-  text-rendering: optimizeSpeed;
-  line-height: 1.5;
-  padding-bottom: 250px;
-}
-
 /* Inherit fonts for inputs and buttons */
 input,
 button,
@@ -31,11 +23,15 @@ select {
 }
 
 body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  /*padding-bottom: 250px;  */
   color: #fc3;
   display: flex;
   margin: 0;
   text-align: center;
-  background-image: url(https://cryptomischief.io/wp-content/uploads/richie-bg.png);
+  background-color: black;
 }
 
 h1 {

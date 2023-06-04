@@ -67,9 +67,14 @@ const Home: NextPage = () => {
   }, [referral]);
 
   return (
-    <div>
+    <div className={styles.main}>
+      <div>
+        <img src={`https://i.pinimg.com/originals/06/87/cc/0687cca171b682a1ed3e53add31c3802.jpg`}
+          className={styles.background}
+        />
+      </div>
       <div className={styles.container}>
-        <h1 className={styles.h1}>Mint an SCC NFT!</h1>
+        <h1 className={styles.h1}>WELCOME to the Poops Lounge</h1>
         <p>Click on one of your Poops to create your own referral link</p>
         <div className={styles.tooltip}>
           <span className={styles.tooltiptext}>Copy to clipboard</span>
@@ -86,7 +91,9 @@ const Home: NextPage = () => {
           {isLoading ? (<p>Loading your poops....</p>) : 
           nfts?.map((nft) => {
             return(
-            <div key={nft.metadata.id.toString()} onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft.metadata.name as string).replace('#','').replace(/ /g,'-')}&wallet=${address}`)}>
+            <div key={nft.metadata.id.toString()} 
+              onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft.metadata.name as string).replace('#','').replace(/ /g,'-')}&wallet=${address}`)}
+              >
               <p>{nft.metadata.name}</p>
                 <ThirdwebNftMedia metadata={nft.metadata} width="200px" height="200px" className={styles.tokenItem} />
             </div>)

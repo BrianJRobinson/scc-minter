@@ -65,11 +65,12 @@ const Referrals = (props) => {
     {
       name: "Team Name",
       selector: (row) => row.teamName,
+      minWidth: "160px",
     },
     {
       name: "Count",
       selector: (row) => row.referralCount,
-      maxWidth: "5%",
+      minWidth: "5%",
     },
     {
       name: "Eth",
