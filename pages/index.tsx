@@ -69,7 +69,7 @@ const Home: NextPage = () => {
   return (
     <div className={styles.main}>
       <div>
-        <img src={`https://i.pinimg.com/originals/06/87/cc/0687cca171b682a1ed3e53add31c3802.jpg`}
+        <img src={`https://i.pinimg.com/originals/d2/b8/59/d2b859bc9841510cd0940bf1ba2a54bf.jpg`}
           className={styles.background}
         />
       </div>
