@@ -17,7 +17,7 @@ const archivo_black = Archivo_Black({
 
 // This is the chain your dApp will work on.
 // not picking up in Prod ???
-const activeChain = "mumbai";
+const activeChain = "polygon";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

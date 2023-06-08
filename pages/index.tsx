@@ -3,8 +3,7 @@ import {
   ThirdwebNftMedia,
   useAddress,
   useContract,
-  useOwnedNFTs, 
-  ConnectWallet
+  useOwnedNFTs
 } from "@thirdweb-dev/react";
 
 import type { NextPage } from "next";
@@ -37,7 +36,7 @@ const Home: NextPage = () => {
   console.log(nfts);
 
   const updateReferral = async (team: string, id:string) => {
-    if(!team)
+    if(!team || team == "undefined")
       team = 'Team';
     const response = await fetch(`${apiAddress}team=${team}&tokenid=${id}&refwallet=${refWallet}&purchaser=${address}`, {
       method: "POST",
