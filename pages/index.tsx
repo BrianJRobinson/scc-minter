@@ -58,13 +58,13 @@ const Home: NextPage = () => {
     }
   }, [router.isReady])  
 
-  useEffect(() => { 
+  /*useEffect(() => { 
     setReferral(window.localStorage.getItem('referral') as string);
-  }, []);
+  }, []); */
 
-  useEffect(() => {
+  /*useEffect(() => {
     window.localStorage.setItem('referral', referral);
-  }, [referral]);
+  }, [referral]);*/
 
   return (
     <div className={styles.main}>
