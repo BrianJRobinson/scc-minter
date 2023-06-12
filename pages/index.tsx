@@ -36,9 +36,19 @@ const Home: NextPage = () => {
   console.log(nfts);
 
   const updateReferral = async (team: string, id:string) => {
+
     if(!team || team == "undefined")
       team = 'Team';
-    const response = await fetch(`${apiAddress}team=${team}&tokenid=${id}&refwallet=${refWallet}&purchaser=${address}`, {
+    let tempWallet = refWallet;
+    if (!tempWallet)
+      tempWallet = 'Team';
+
+    if (nftDropContractAddress as string !== "0x70ba609b37c0f95821ab96244b66606295e3909a") // not prod   
+    {
+      team = "Test Run";
+    }   
+    console.log(`Sending a referral update with team "${team}" for tokenId ${id} ref wallet as ${refWallet} and purchaser of ${address}`);    
+    const response = await fetch(`${apiAddress}team=${team}&tokenid=${id}&refwallet=${tempWallet}&purchaser=${address}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -57,14 +67,6 @@ const Home: NextPage = () => {
         setRefWallet(queryParameters.wallet as string);
     }
   }, [router.isReady])  
-
-  /*useEffect(() => { 
-    setReferral(window.localStorage.getItem('referral') as string);
-  }, []); */
-
-  /*useEffect(() => {
-    window.localStorage.setItem('referral', referral);
-  }, [referral]);*/
 
   return (
     <div className={styles.main}>
@@ -103,12 +105,17 @@ const Home: NextPage = () => {
           theme="dark"
           className={styles.mintButton}
           contractAddress={nftDropContractAddress}
-          action={(contract) => contract.erc721.claim(1)}        
+          action={(contract) => contract.erc721.claim(1)}  
+          onSubmit={() => {
+              console.log(`Submitting Change on button - current wallet is ${address}`);
+          }}       
           onSuccess={(result) => {
             toast('Mint Successful', { hideProgressBar: true, autoClose: 3000, type: 'success' ,position:'top-center' });
-            updateReferral(referral, result[0].id);                   
+            console.log('Mint Successful');
+            updateReferral(referral, result[0].id.toString());                   
           }}
           onError={(error) => {
+            console.log('Mint Unsuccessful');
             toast(`Error minting - ${error}`, { hideProgressBar: true, autoClose: 3000, type: 'error' ,position:'top-center' })
           }}
         >

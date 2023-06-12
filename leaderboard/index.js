@@ -12,7 +12,7 @@ createTheme(
       secondary: "#fc3",
     },
     background: {
-      default: "#59246466",
+      default: "#592464a1",
     },
     context: {
       background: "transparent",
@@ -27,7 +27,7 @@ createTheme(
       disabled: "rgba(0,0,0,.12)",
     },
     striped: {
-      default: "#9c59b37a",
+      default: "#9c59b3a1",
       text: "#F9EA76",
     },
   },
@@ -94,6 +94,7 @@ const Leaderboard = (props) => {
       style: {
         paddingLeft: "5px", // override the cell padding for head cells
         paddingRight: "5px",
+        fontSize: "large",
       },
     },
     cells: {
@@ -108,7 +109,13 @@ const Leaderboard = (props) => {
     <div className={styles.referralTable}>
       <br />
       <h2>Shillers Leaderboard</h2>
-      <DataTable columns={columns} data={data} striped theme="solarized" />
+      <DataTable
+        columns={columns}
+        data={data}
+        striped
+        theme="solarized"
+        customStyles={customStyles}
+      />
     </div>
   );
 };

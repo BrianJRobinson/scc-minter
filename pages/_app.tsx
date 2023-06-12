@@ -18,8 +18,9 @@ const archivo_black = Archivo_Black({
 // This is the chain your dApp will work on.
 // not picking up in Prod ???
 const activeChain = "polygon";
-
+console.log(`Active chain is ${activeChain}`);
 function MyApp({ Component, pageProps }: AppProps) {
+
   return (
     <main className={limelight.className}>
 
