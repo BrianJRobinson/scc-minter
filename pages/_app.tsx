@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import { Limelight, Archivo_Black, Poppins } from 'next/font/google';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { nftDropContractAddress } from "../consts/contractAddresses";
 
 const limelight = Limelight({
   subsets: ['latin'],
@@ -15,9 +16,13 @@ const archivo_black = Archivo_Black({
   weight: '400',
 })
 
+let activeChain:string = "polygon"
+
 // This is the chain your dApp will work on.
 // not picking up in Prod ???
-const activeChain = "polygon";
+if (nftDropContractAddress.toString() !== "0x70ba609b37c0f95821ab96244b66606295e3909a")
+  activeChain = "mumbai";
+
 console.log(`Active chain is ${activeChain}`);
 function MyApp({ Component, pageProps }: AppProps) {
 

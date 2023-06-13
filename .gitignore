@@ -48,3 +48,6 @@ lerna-debug.log*
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+yarn.lock
+package-lock.json
+package-lock.json
