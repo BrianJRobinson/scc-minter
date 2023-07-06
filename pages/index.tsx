@@ -30,10 +30,7 @@ const Home: NextPage = () => {
   const { contract } = useContract(nftDropContractAddress);
   const address = useAddress();
 
-  console.log(address);
   const { data: nfts, isLoading: isLoading } = useOwnedNFTs(contract, address);
-
-  console.log(nfts);
 
   const updateReferral = async (team: string, id:string) => {
 
@@ -87,17 +84,24 @@ const Home: NextPage = () => {
           </input>
         </div>
         <p className={styles.explain}>
-          <b>Owned NFTs</b>
+          {!address ? 
+          (
+            <b> Owned NFTs</b>
+          ) :          
+          (
+            <div>{address?.substring(0,4)}...{address?.substring(address?.length-4)}<br /><b> Owned NFTs</b></div>
+          )
+        }
         </p>        
         <div className={styles.tokenGrid}>
           {isLoading ? (<p>Loading your poops....</p>) : 
-          nfts?.map((nft) => {
+          nfts?.map((nft) => {            
             return(
-            <div key={nft.metadata.id.toString()} 
+            <div key={nft?.metadata?.id?.toString()} 
               onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft.metadata.name as string).replace('#','').replace(/ /g,'-')}&wallet=${address}`)}
               >
-              <p>{nft.metadata.name}</p>
-                <ThirdwebNftMedia metadata={nft.metadata} width="200px" height="200px" className={styles.tokenItem} />
+              <p>{nft?.metadata?.name}</p>
+                <ThirdwebNftMedia metadata={nft?.metadata} width="200px" height="200px" className={styles.tokenItem} />
             </div>)
           })}    
         </div>   

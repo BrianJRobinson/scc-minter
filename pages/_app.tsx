@@ -28,7 +28,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <main className={limelight.className}>
-
         <ThirdwebProvider activeChain={activeChain}>
           <Component {...pageProps} />
             <ToastContainer />
