@@ -83,22 +83,22 @@ const Home: NextPage = () => {
                 }}>                
           </input>
         </div>
-        <p className={styles.explain}>
+        <div className={styles.explain}>
           {!address ? 
           (
-            <b> Owned NFTs</b>
+            <b>Owned NFTs</b>
           ) :          
           (
             <div>{address?.substring(0,4)}...{address?.substring(address?.length-4)}<br /><b> Owned NFTs</b></div>
           )
         }
-        </p>        
+        </div>        
         <div className={styles.tokenGrid}>
           {isLoading ? (<p>Loading your poops....</p>) : 
           nfts?.map((nft) => {            
             return(
             <div key={nft?.metadata?.id?.toString()} 
-              onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft.metadata.name as string).replace('#','').replace(/ /g,'-')}&wallet=${address}`)}
+              onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft?.metadata.name as string).replace('#','').replace(/ /g,'-')}&wallet=${address}`)}
               >
               <p>{nft?.metadata?.name}</p>
                 <ThirdwebNftMedia metadata={nft?.metadata} width="200px" height="200px" className={styles.tokenItem} />
@@ -106,6 +106,7 @@ const Home: NextPage = () => {
           })}    
         </div>   
         <Web3Button
+          
           theme="dark"
           className={styles.mintButton}
           contractAddress={nftDropContractAddress}
@@ -121,8 +122,7 @@ const Home: NextPage = () => {
           onError={(error) => {
             console.log('Mint Unsuccessful');
             toast(`Error minting - ${error}`, { hideProgressBar: true, autoClose: 3000, type: 'error' ,position:'top-center' })
-          }}
-        >
+          }}>
           Mint an SCC NFT (0.1WETH)
         </Web3Button>
         <br />
