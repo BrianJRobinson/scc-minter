@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   const router = useRouter()
   const queryParameters = router.query
 
-  const [referral, setReferral] = useState('Team');
+  const [referral, setReferral] = useState('Engine');
   const [refWallet, setRefWallet] = useState('');
   const [tokenId, setTokenId] = useState('0');
   const [refLink, setRefLink] = useState('');
@@ -35,10 +35,10 @@ const Home: NextPage = () => {
   const updateReferral = async (team: string, id:string) => {
 
     if(!team || team == "undefined")
-      team = 'Team';
+      team = 'Engine';
     let tempWallet = refWallet;
     if (!tempWallet)
-      tempWallet = 'Team';
+      tempWallet = 'Engine';
 
     if (nftDropContractAddress as string !== "0x70ba609b37c0f95821ab96244b66606295e3909a") // not prod   
     {
