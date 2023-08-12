@@ -133,7 +133,7 @@ const Home: NextPage = () => {
         <br />
         <div>
           {!totalMintedIsLoading ? 
-          (<p>{totalMinted.toString()}/10,000</p>)
+          (<p>Minted so far: {totalMinted.toString()}/10,000</p>)
           :(<p>Checking mint amounts</p>)        
           }
         </div>    
