@@ -3,7 +3,8 @@ import {
   ThirdwebNftMedia,
   useAddress,
   useContract,
-  useOwnedNFTs
+  useOwnedNFTs,
+  useContractRead
 } from "@thirdweb-dev/react";
 
 import type { NextPage } from "next";
@@ -31,6 +32,10 @@ const Home: NextPage = () => {
   const address = useAddress();
 
   const { data: nfts, isLoading: isLoading } = useOwnedNFTs(contract, address);
+  const { data: totalMinted, isLoading: totalMintedIsLoading } = useContractRead(
+    contract,
+    "totalMinted"
+  );
 
   const updateReferral = async (team: string, id:string) => {
 
@@ -126,6 +131,12 @@ const Home: NextPage = () => {
           Mint an SCC NFT (0.1WETH)
         </Web3Button>
         <br />
+        <div>
+          {!totalMintedIsLoading ? 
+          (<p>{totalMinted.toString()}/10,000</p>)
+          :(<p>Checking mint amounts</p>)        
+          }
+        </div>    
         <h3>Your buddys Poop name</h3>
         <input
           className={styles.textBox}
