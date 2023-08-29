@@ -28,9 +28,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <main className={limelight.className}>
-        <ThirdwebProvider activeChain={activeChain}>
+        <ThirdwebProvider 
+          activeChain={activeChain} 
+          clientId="1e7d03743110f17cf749d48fb8d1962f">
           <Component {...pageProps} />
-            <ToastContainer />
+          <ToastContainer />
         </ThirdwebProvider>
     </main>
   );

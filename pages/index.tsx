@@ -31,6 +31,7 @@ const Home: NextPage = () => {
   const { contract } = useContract(nftDropContractAddress);
   const address = useAddress();
 
+ 
   const { data: nfts, isLoading: isLoading } = useOwnedNFTs(contract, address);
   const { data: totalMinted, isLoading: totalMintedIsLoading } = useContractRead(
     contract,
@@ -144,7 +145,7 @@ const Home: NextPage = () => {
           value={referral}
           readOnly
         />
-        <Leaderboard newToken={tokenId} />
+        <Leaderboard newToken={tokenId} /> 
       </div>
     </div>
   );
