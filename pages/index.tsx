@@ -16,6 +16,7 @@ import styles from "../styles/Home.module.css";
 import { useState, useEffect } from 'react';
 import { toast } from "react-toastify";
 import Leaderboard from "../leaderboard";
+import { TimerContainer } from "../components/TimerContainer";
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -71,15 +72,75 @@ const Home: NextPage = () => {
     }
   }, [router.isReady])  
 
+  /*
+    All The Timer stuff goes here
+  */
+    const [time, setTime] = useState<number>(1);
+    const [newTime, setNewTime] = useState<number>(0)
+    const [days, setDays] = useState<number>(0);
+    const [hours, setHours] = useState<number>(0);
+    const [minutes, setMinutes] = useState<number>(0);
+    const [seconds, setSeconds] = useState<number>(0);
+    const [message, setMessage] = useState<string>("");
+  
+    const timeToDays = time * 60 * 60 * 24 * 1000;
+  
+    let countDownDate = new Date().getTime() + timeToDays;
+  
+  
+    useEffect(() => {
+  
+  
+      var updateTime = setInterval(() => {
+        const now = new Date().getTime();
+        const then = Date.UTC(2023, 10, 11, 8, 0, 0);
+        const difference = then - now;
+  
+        var newDays = Math.floor(difference / (1000 * 60 * 60 * 24));
+        var newHours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var newMinutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        var newSeconds = Math.floor((difference % (1000 * 60)) / 1000);
+  
+        setDays(newDays);
+        setHours(newHours);
+        setMinutes(newMinutes);
+        setSeconds(newSeconds);
+  
+  
+        if (difference <= 0) {
+          clearInterval(updateTime);
+          setMessage("Snapshot in Progress");
+          setDays(0);
+          setHours(0);
+          setMinutes(0);
+          setSeconds(0);
+        }
+      })
+  
+      return () => {
+        clearInterval(updateTime);
+      }
+  
+    }, [time]);
+
+    // END OF THE TIMER CODE
   return (
     <div className={styles.main}>
       <div>
-        <img src={`https://drip.pineydev.com/token_images/poops-lounge-bg.jpg`}
+        <img src={`../images/poops-lounge-bg.jpg`}
           className={styles.background}
         />
       </div>
       <div className={styles.container}>
+        <div id="rubic-widget-root"></div>
         <h1 className={styles.h1}>WELCOME to the Poops Lounge</h1>
+        <TimerContainer
+          days={days}
+          hours={hours}
+          minutes={minutes}
+          seconds={seconds}
+          message={message}
+      />
         <p>Click on one of your Poops to create your own referral link</p>
         <div className={styles.tooltip}>
           <span className={styles.tooltiptext}>Copy to clipboard</span>
@@ -91,13 +152,13 @@ const Home: NextPage = () => {
         </div>
         <div className={styles.explain}>
           {!address ? 
-          (
-            <b>Owned NFTs</b>
-          ) :          
-          (
-            <div>{address?.substring(0,4)}...{address?.substring(address?.length-4)}<br /><b> Owned NFTs</b></div>
-          )
-        }
+            (
+              <b>Owned NFTs</b>
+            ) :          
+            (
+              <div>{address?.substring(0,4)}...{address?.substring(address?.length-4)}<br /><b> Owned NFTs</b></div>
+            )
+          }
         </div>        
         <div className={styles.tokenGrid}>
           {isLoading ? (<p>Loading your poops....</p>) : 
