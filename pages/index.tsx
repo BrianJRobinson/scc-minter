@@ -34,6 +34,8 @@ const Home: NextPage = () => {
 
  
   const { data: nfts, isLoading: isLoading } = useOwnedNFTs(contract, address);
+  const nftSize = nfts ? nfts?.length > 20 ? "140px" : "200px" : "200px";
+
   const { data: totalMinted, isLoading: totalMintedIsLoading } = useContractRead(
     contract,
     "totalMinted"
@@ -168,7 +170,7 @@ const Home: NextPage = () => {
               onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft?.metadata.name as string).replace('#','').replace(/ /g,'-')}&wallet=${address}`)}
               >
               <p>{nft?.metadata?.name}</p>
-                <ThirdwebNftMedia metadata={nft?.metadata} width="200px" height="200px" className={styles.tokenItem} />
+                <ThirdwebNftMedia metadata={nft?.metadata} width={nftSize} height={nftSize} className={styles.tokenItem} />
             </div>)
           })}    
         </div>   
