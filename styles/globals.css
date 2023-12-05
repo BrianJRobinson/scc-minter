@@ -57,3 +57,23 @@ h2 {
   background-color: #200b3178;
   padding: 0em 1em;
 }
+
+/* unvisited link */
+a:link {
+  color: #fc3;
+}
+
+/* visited link */
+a:visited {
+  color: #fc3;
+}
+
+/* mouse over link */
+a:hover {
+  color: #fc3;
+}
+
+/* selected link */
+a:active {
+  color:#fc3;
+}

@@ -175,7 +175,7 @@ const Home: NextPage = () => {
           })}    
         </div>   
         <Web3Button
-          
+          isDisabled={true}
           theme="dark"
           className={styles.mintButton}
           contractAddress={nftDropContractAddress}
@@ -194,6 +194,8 @@ const Home: NextPage = () => {
           }}>
           Mint an SCC NFT (0.1WETH)
         </Web3Button>
+        <p>Minting is currently disabled as we work with our third party to resolve a problem</p>
+        <p>Visit the SCC Raffle if you still want an NFT. Here you can win one <a href="https://scc-raffle.vercel.app">Lucky Sh!t Raffle</a></p>
         <br />
         <div>
           {!totalMintedIsLoading ? 
