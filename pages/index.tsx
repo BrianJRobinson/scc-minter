@@ -49,7 +49,7 @@ const Home: NextPage = () => {
     if (!tempWallet)
       tempWallet = 'Engine';
 
-    if (nftDropContractAddress as string !== "0x70ba609b37c0f95821ab96244b66606295e3909a") // not prod   
+    if (nftDropContractAddress as string !== "0x49a5BC3414935f74e4d23c8715f00a9B3a77f291") // not prod   
     {
       team = "Test Run";
     }   
