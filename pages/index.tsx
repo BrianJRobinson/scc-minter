@@ -95,13 +95,30 @@ const Home: NextPage = () => {
   
       var updateTime = setInterval(() => {
         const now = new Date().getTime();
-        const then = Date.UTC(2023, 12, 15, 8, 0, 0);
+        var testDate = new Date();
+        var currentDay = testDate.getUTCDate();
+        var currentMonth = testDate.getUTCMonth();
+
+        var currentYear = testDate.getUTCFullYear();
+        //console.log(testDate.toString())
+        //console.log(currentDay);
+        //console.log(currentMonth);
+
+        if (currentDay > 15)
+          currentMonth += 1;
+
+        //console.log(currentMonth);
+
+        const then = Date.UTC(currentYear, currentMonth, 15, 8, 0, 0);
         const difference = then - now;
   
         var newDays = Math.floor(difference / (1000 * 60 * 60 * 24));
         var newHours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var newMinutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         var newSeconds = Math.floor((difference % (1000 * 60)) / 1000);
+        
+        //console.log(difference);
+        //console.log(new Date(then).toString());
   
         setDays(newDays);
         setHours(newHours);
