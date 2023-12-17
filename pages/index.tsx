@@ -95,7 +95,7 @@ const Home: NextPage = () => {
   
       var updateTime = setInterval(() => {
         const now = new Date().getTime();
-        const then = Date.UTC(2023, 11, 15, 8, 0, 0);
+        const then = Date.UTC(2023, 12, 15, 8, 0, 0);
         const difference = then - now;
   
         var newDays = Math.floor(difference / (1000 * 60 * 60 * 24));
