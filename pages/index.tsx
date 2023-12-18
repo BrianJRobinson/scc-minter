@@ -17,6 +17,8 @@ import { useState, useEffect } from 'react';
 import { toast } from "react-toastify";
 import Leaderboard from "../leaderboard";
 import { TimerContainer } from "../components/TimerContainer";
+import MintLeaderboard from "../components/MintLeaderboard";
+import { Box, Text, Input } from "@chakra-ui/react";
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -144,14 +146,11 @@ const Home: NextPage = () => {
 
     // END OF THE TIMER CODE
   return (
-    <div className={styles.main}>
+    <Box className={styles.main} color={"#fc3"}>
       <div>
-        <img src={`../images/poops-lounge-bg.jpg`}
-          className={styles.background}
-        />
+        <img src="../images/poops-lounge-bg.jpg" className={styles.mainimg}></img>
       </div>
-      <div className={styles.container}>
-        <div id="rubic-widget-root"></div>
+      <Box className={styles.container}>
         <h1 className={styles.h1}>WELCOME to the Poops Lounge</h1>
         <TimerContainer
           days={days}
@@ -159,17 +158,17 @@ const Home: NextPage = () => {
           minutes={minutes}
           seconds={seconds}
           message={message}
-      />
+        />
         <p>Click on one of your Poops to create your own referral link</p>
-        <div className={styles.tooltip}>
+        <Box className={styles.tooltip}>
           <span className={styles.tooltiptext}>Copy to clipboard</span>
           <input type='text' value={refLink} className={styles.referralBox} readOnly 
             onClick={() => {navigator.clipboard.writeText(refLink); 
                 toast('Copied to clipboard', { hideProgressBar: true, autoClose: 1000, type: 'success' ,position:'top-center' });
                 }}>                
           </input>
-        </div>
-        <div className={styles.explain}>
+        </Box>
+        <Box className={styles.explain}>
           {!address ? 
             (
               <b>Owned NFTs</b>
@@ -178,19 +177,19 @@ const Home: NextPage = () => {
               <div>{address?.substring(0,4)}...{address?.substring(address?.length-4)}<br /><b> Owned NFTs</b></div>
             )
           }
-        </div>        
-        <div className={styles.tokenGrid}>
+        </Box>        
+        <Box className={styles.tokenGrid}>
           {isLoading ? (<p>Loading your poops....</p>) : 
           nfts?.map((nft) => {            
             return(
-            <div key={nft?.metadata?.id?.toString()} 
+            <Box key={nft?.metadata?.id?.toString()} 
               onClick={() => setRefLink(`https://scc-minter.vercel.app?ref=${(nft?.metadata.name as string).replace('#','').replace(/ /g,'-')}&wallet=${address}`)}
               >
               <p>{nft?.metadata?.name}</p>
                 <ThirdwebNftMedia metadata={nft?.metadata} width={nftSize} height={nftSize} className={styles.tokenItem} />
-            </div>)
+            </Box>)
           })}    
-        </div>   
+        </Box>   
         <Web3Button
           theme="dark"
           className={styles.mintButton}
@@ -211,22 +210,29 @@ const Home: NextPage = () => {
           Mint an SCC NFT (0.1WETH)
         </Web3Button>
         <br />
-        <div>
+        <Box>
           {!totalMintedIsLoading ? 
-          (<p>Minted so far: {totalMinted.toString()}/10,000</p>)
-          :(<p>Checking mint amounts</p>)        
+          (<Text my="2" fontSize={22}>Minted so far: {totalMinted.toString()}/10,000</Text>)
+          :(<Text>Checking mint amounts</Text>)        
           }
-        </div>    
-        <h3>Your buddys Poop name</h3>
-        <input
-          className={styles.textBox}
-          type="text"
-          value={referral}
-          readOnly
-        />
-        <Leaderboard newToken={tokenId} /> 
-      </div>
-    </div>
+        </Box>    
+        <Text my="2">Your buddys Poop name</Text>
+        <Box mb={4}>
+          <input
+            className={styles.textBox}
+            type="text"
+            value={referral}
+            readOnly
+          />          
+        </Box>
+        <Box my={5}>
+          <Text fontSize={30}>Legendary Shillers List</Text> 
+        </Box>
+
+        <MintLeaderboard newToken={0} />
+
+      </Box>
+    </Box>
   );
 };
 

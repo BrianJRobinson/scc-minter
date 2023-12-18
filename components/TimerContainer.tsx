@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react';
 import React from 'react'
 
 interface timeProps{
@@ -33,7 +34,7 @@ export const TimerContainer = ({days, hours, minutes ,seconds ,message }: timePr
   sSeconds = seconds < 10 ? "0"+seconds.toString() : seconds.toString();
   
     return (
-      <div>
+      <Box mt={"2rem"} mb={"2rem"}>
       {!message ? (
         <div className="payoutDiv">
             <h2 className="margin-bottom: 0px">NFT Payout in</h2>
@@ -42,8 +43,8 @@ export const TimerContainer = ({days, hours, minutes ,seconds ,message }: timePr
                 <h2>{sHours} H</h2>
                 <h2>{sMinutes } M</h2>
                 <h2>{sSeconds } S</h2>
-            </div>
           </div>
+        </div>
       ) : (
         <div className="payoutDiv">
           <h2 className="margin-bottom: 0px">NFT Payout</h2>
@@ -52,6 +53,6 @@ export const TimerContainer = ({days, hours, minutes ,seconds ,message }: timePr
         </div>
       )
     }
-    </div>
+    </Box>
   )
 }

@@ -1,6 +1,14 @@
 .main {
   height:100%;
 }
+
+.mainimg {
+  opacity: .2;
+  position: fixed;  
+  height: 100%;
+  width: 100%;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -9,7 +17,6 @@
   width: 100%;
   position: absolute;
   padding: 50px 24px;
-  /*height: 100%;*/
 }
 
 .header {
