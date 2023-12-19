@@ -19,6 +19,7 @@ import Leaderboard from "../leaderboard";
 import { TimerContainer } from "../components/TimerContainer";
 import MintLeaderboard from "../components/MintLeaderboard";
 import { Box, Text, Input } from "@chakra-ui/react";
+import EngineFunding from "../components/EngineFunding";
 
 const Home: NextPage = () => {
   const router = useRouter()
@@ -159,6 +160,7 @@ const Home: NextPage = () => {
           seconds={seconds}
           message={message}
         />
+        <EngineFunding newMintedCount={totalMinted}/>
         <p>Click on one of your Poops to create your own referral link</p>
         <Box className={styles.tooltip}>
           <span className={styles.tooltiptext}>Copy to clipboard</span>

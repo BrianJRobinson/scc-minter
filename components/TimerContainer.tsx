@@ -34,7 +34,7 @@ export const TimerContainer = ({days, hours, minutes ,seconds ,message }: timePr
   sSeconds = seconds < 10 ? "0"+seconds.toString() : seconds.toString();
   
     return (
-      <Box mt={"2rem"} mb={"2rem"}>
+      <Box mt={"1rem"} mb={"1rem"}>
       {!message ? (
         <div className="payoutDiv">
             <h2 className="margin-bottom: 0px">NFT Payout in</h2>

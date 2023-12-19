@@ -53,7 +53,7 @@ const MintLeaderboard: React.FC<Props> = ({newToken}) => {
                             <Td>{shiller?.teamName} </Td>
                             <Td>{shiller?.referralCount} </Td>
                             <Td>{shiller?.wethValue} </Td>
-                            <Td>{shiller?.dollarValue} </Td>
+                            <Td>{shiller?.dollarValue.toFixed(2)} </Td>
                         </Tr>
                     ))}                   
                 </Tbody>
