@@ -37,7 +37,7 @@ const MintLeaderboard: React.FC<Props> = ({newToken}) => {
     }, [tokenId]);
 
     return(
-        <TableContainer color={"#ffcc33"} width={"70%"}>
+        <TableContainer color={"#ffcc33"} width={{base:"98%", md:"70%"}}>
             <Table>
                 <Thead>
                     <Tr backgroundColor={"#592464dd"} height={14}>

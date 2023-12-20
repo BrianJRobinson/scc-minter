@@ -5,7 +5,8 @@ import { Limelight, Archivo_Black, Poppins } from 'next/font/google';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { nftDropContractAddress } from "../consts/contractAddresses";
-import { ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider, Flex, Spacer } from "@chakra-ui/react";
+import  Header from "../components/Header";
 
 const limelight = Limelight({
   subsets: ['latin'],
@@ -33,7 +34,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           <ThirdwebProvider 
             activeChain={activeChain} 
             clientId="1e7d03743110f17cf749d48fb8d1962f">
-            <Component {...pageProps} />
+            <Flex flexDirection={'column'} minH={'100vh'} minW={('100vw')} alignItems={'stretch'} >
+              <Header />  
+              <Box backgroundColor={"#fc5"} maxH={"5px"} minH={"5px"}/>        
+              <Component {...pageProps}/>
+            </Flex>
             <ToastContainer />
           </ThirdwebProvider>
         </ChakraProvider>

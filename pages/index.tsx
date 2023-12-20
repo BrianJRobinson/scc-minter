@@ -152,7 +152,7 @@ const Home: NextPage = () => {
         <img src="../images/poops-lounge-bg.jpg" className={styles.mainimg}></img>
       </div>
       <Box className={styles.container}>
-        <h1 className={styles.h1}>WELCOME to the Poops Lounge</h1>
+        <Text fontSize={{base:"30px", md:"40px", lg: "50px"}}>WELCOME to the Poops Lounge</Text>
         <TimerContainer
           days={days}
           hours={hours}
