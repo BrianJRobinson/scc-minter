@@ -27,7 +27,7 @@ const EngineFunding: React.FC<Props> = ({newMintedCount}) => {
     const [maticPrice, setMaticPrice] = useState<Price>();
     const [mintedCount, setMintedCount] = useState(newMintedCount);
 
-    const maticCount: Number = 33773;
+    const maticCount: Number = 42375;
 
     if (mintedCount !== newMintedCount) {
         setMintedCount(newMintedCount);
@@ -55,7 +55,7 @@ const EngineFunding: React.FC<Props> = ({newMintedCount}) => {
     const getMaticPrice = async () => {
         console.log(`Getting Data`);
         try {
-          const response = await axios.get<Price>("https://degen-defi.com/api/degenprice/getprice/0x184a2EfA325793a297dDC9dBAe55e8216162C9fd/polygon/0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270");
+          const response = await axios.get<Price>("https://degen-defi.com/api/degenprice/getprice/0x184a2EfA325793a297dDC9dBAe55e8216162C9fd/polygon/0xA374094527e1673A86dE625aa59517c5dE346d32");
           console.log(response.data);
           setMaticPrice(response.data);
         } catch (error) {
