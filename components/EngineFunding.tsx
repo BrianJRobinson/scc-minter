@@ -27,7 +27,7 @@ const EngineFunding: React.FC<Props> = ({newMintedCount}) => {
     const [maticPrice, setMaticPrice] = useState<Price>();
     const [mintedCount, setMintedCount] = useState(newMintedCount);
 
-    const maticCount: Number = 42375;
+    const maticCount: Number = 61750;
 
     if (mintedCount !== newMintedCount) {
         setMintedCount(newMintedCount);
