@@ -214,7 +214,7 @@ const Home: NextPage = () => {
         <br />
         <Box>
           {!totalMintedIsLoading ? 
-          (<Text my="2" fontSize={22}>Minted so far: {totalMinted.toString()}/10,000</Text>)
+          (<Text my="2" fontSize={22}>Minted so far: {totalMinted.toString()}/1,000</Text>)
           :(<Text>Checking mint amounts</Text>)        
           }
         </Box>    
